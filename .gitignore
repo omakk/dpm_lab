@@ -3,6 +3,9 @@
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
+# Archive File #
+*.zip
+
 # Package Files #
 *.jar
 *.war
