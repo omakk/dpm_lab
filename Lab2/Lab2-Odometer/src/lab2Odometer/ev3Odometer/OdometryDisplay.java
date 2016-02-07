@@ -2,6 +2,12 @@
  * OdometryDisplay.java
  */
 
+//
+// Group 37:
+// 
+// Omar Akkila 260463681
+// Frank Ye 260689448
+
 package lab2Odometer.ev3Odometer;
 
 import lejos.hardware.lcd.TextLCD;

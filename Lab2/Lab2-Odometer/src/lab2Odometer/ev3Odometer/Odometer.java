@@ -2,6 +2,12 @@
  * Odometer.java
  */
 
+//
+// Group 37:
+// 
+// Omar Akkila 260463681
+// Frank Ye 260689448
+
 package lab2Odometer.ev3Odometer;
 
 import lejos.hardware.motor.EV3LargeRegulatedMotor;
@@ -56,6 +62,7 @@ public class Odometer extends Thread {
 			synchronized (lock) {
 				// don't use the variables x, y, or theta anywhere but here!
 				
+				// This is based off of the algorithm used in the lecture slides
 				double deltaD, deltaT, dX, dY;
 				
 				this.lastTachoL = this.nowTachoL;
@@ -99,7 +106,7 @@ public class Odometer extends Thread {
 			if (update[1])
 				position[1] = y;
 			if (update[2])
-				position[2] = theta;
+				position[2] = theta * (180 / Math.PI); //Convert to degrees
 		}
 	}
 

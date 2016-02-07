@@ -1,4 +1,9 @@
 // Lab2.java
+//
+// Group 37:
+// 
+// Omar Akkila 260463681
+// Frank Ye 260689448
 
 package lab2Odometer.ev3Odometer;
 
@@ -62,7 +67,7 @@ public class Lab2 {
 			
 			odometer.start();
 			odometryDisplay.start();
-			// odometryCorrection.start();
+			odometryCorrection.start();
 
 			// spawn a new Thread to avoid SquareDriver.drive() from blocking
 			(new Thread() {
