@@ -1,17 +1,16 @@
 /*
- * Odometer.java
+ * Group 37:
+ * 
+ * Omar Akkila 260463681
+ * Frank Ye 260689448
+ * 
+ * Part 2 (Naviagation + Avoidance) does not work and we were demoed late by a TA named Luke. 
+ * Hence, why the code submission is late.
  */
-
-//
-// Group 37:
-// 
-// Omar Akkila 260463681
-// Frank Ye 260689448
 
 package lab3Navigation;
 
 import lejos.hardware.motor.EV3LargeRegulatedMotor;
-import lejos.hardware.motor.Motor;
 
 public class Odometer extends Thread {
 	// robot position

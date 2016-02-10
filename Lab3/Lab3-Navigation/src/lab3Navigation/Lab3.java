@@ -1,3 +1,14 @@
+/*
+ * Group 37:
+ * 
+ * Omar Akkila 260463681
+ * Frank Ye 260689448
+ * 
+ * Part 2 (Naviagation + Avoidance) does not work and we were demoed late by a TA named Luke. 
+ * Hence, why the code submission is late.
+ */
+
+
 package lab3Navigation;
 
 import lejos.hardware.Button;
@@ -11,7 +22,7 @@ import lejos.robotics.SampleProvider;
 
 public class Lab3 {
 
-	private static final int bandCenter = 35;
+	private static final int bandCenter = 40;
 	private static final int bandWidth = 2;
 	private static final int motorLow = 150;
 	private static final int motorHigh = 250;
@@ -27,11 +38,9 @@ public class Lab3 {
 		//Setup odometer, navigator, and controller objects
 		Odometer o = new Odometer(leftMotor, rightMotor);
 		OdometryDisplay od = new OdometryDisplay(o, t);
-		Navigator nav = new Navigator(o);
 		// You can use either BangBang or P.
 		// Use whichever works better
-		BangBangController bangbang = new BangBangController(leftMotor, rightMotor, bandCenter, bandWidth, motorLow, motorHigh, nav);
-		PController p = new PController(leftMotor, rightMotor, bandCenter, bandWidth);
+		BangBangController bangbang = new BangBangController(leftMotor, rightMotor, bandCenter, bandWidth, motorLow, motorHigh);
 
 		int option = 0;
 		printMainMenu();
@@ -52,8 +61,10 @@ public class Lab3 {
 		float[] usData = new float[usDistance.sampleSize()];		// usData is the buffer in which data are returned
 		
 		// Setup Ultrasonic Poller															// This thread samples the US and invokes
-		UltrasonicPoller usPoller = new UltrasonicPoller(usDistance, usData, bangbang);		// the selected controller on each cycle
+		UltrasonicPoller usPoller = new UltrasonicPoller(usDistance, usData, bangbang, bandCenter);		// the selected controller on each cycle
 		
+		Navigator nav = new Navigator(o, usPoller);
+
 		// Depending on which button was pressed, perform the path used in the nav-only demo or perform the path
 		// used in the nav + avoidance path which is the default path when running the thread.
 		// Also, start your odometer and odometer display threads
@@ -62,35 +73,17 @@ public class Lab3 {
 			o.start();
 			od.start();
 			nav.start();
-			nav.setNavigatingState(true);
-//			(new Navigator(o) {
-//				public void run() {
-//					this.travelTo(60, 30);
-//					this.travelTo(30.0, 30.0);
-//					this.travelTo(30, 60);
-//					this.travelTo(60, 0);
-//					this.travelTo(0.0, 60.0);
-//					this.travelTo(60.0, 0.0);
-//				}
-//			}).start();
 			break;
 		case Button.ID_RIGHT:										// Default thread path (nav + avoidance) selected
 			o.start();
 			od.start();
-			usPoller.start();
 			try {
-				Thread.sleep(2500);
+				Thread.sleep(250);
 			} catch (InterruptedException e) {
 				// This code block intentionally left blank
 			}
+			usPoller.start();
 			nav.start();
-			nav.setNavigatingState(true);
-//			(new Navigator(o) {
-//				public void run() {
-//					this.travelTo(0.0, 60.0);
-//					this.travelTo(60.0, 0.0);
-//				}
-//			}).start();
 			break;
 		default:
 			System.out.println("Error - invalid button");			// None of the above - abort
