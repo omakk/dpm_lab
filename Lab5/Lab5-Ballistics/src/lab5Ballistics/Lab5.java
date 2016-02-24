@@ -1,3 +1,10 @@
+/*
+ * Group 37:
+ * 
+ * Omar Akkila	260463681
+ * Frank Ye		260689448
+ */
+
 package lab5Ballistics;
 
 import lejos.hardware.Button;
@@ -13,9 +20,14 @@ public class Lab5 {
 	public static void main (String[] args) {
 		leftMotor.setAcceleration(30000);
 		rightMotor.setAcceleration(30000);
-		
+				
 		LocalEV3.get().getTextLCD().drawString("READY TO FIRE-UU!!", 0, 0);
 		
+		/*
+		 * Press enter button twice to launch catapult OR press the escape button once to exit the program.
+		 * The catapult is launched by rotating both motors 70 degrees counter clockwise and allowed to fall back down after
+		 * the motors have been floated.
+		 */
 		while (Button.waitForAnyPress() == Button.ID_ENTER && Button.waitForAnyPress() != Button.ID_ESCAPE) {
 			Sound.beep();
 			
