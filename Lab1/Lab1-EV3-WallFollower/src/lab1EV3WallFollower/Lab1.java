@@ -1,4 +1,4 @@
-package wallFollower;
+package lab1EV3WallFollower;
 
 import lejos.hardware.sensor.*;
 import lejos.hardware.ev3.LocalEV3;
@@ -9,6 +9,10 @@ import lejos.hardware.Button;
 
 //
 // Lab 1:  EV3 Wall Following robot
+// 
+// Group 37
+// Omar Akkila : 260463681
+// Frank Ye    : 260689448
 //
 // This is the main class for the wall follower.
 
@@ -16,10 +20,10 @@ public class Lab1 {
 
 // Parameters: adjust these for desired performance
 
-	private static final int bandCenter = 20;			// Offset from the wall (cm)
-	private static final int bandWidth = 3;				// Width of dead band (cm)
-	private static final int motorLow = 100;			// Speed of slower rotating wheel (deg/sec)
-	private static final int motorHigh = 200;			// Speed of the faster rotating wheel (deg/seec)
+	private static final int bandCenter = 35;			// Offset from the wall (cm)
+	private static final int bandWidth = 2;				// Width of dead band (cm)
+	private static final int motorLow = 150;			// Speed of slower rotating wheel (deg/sec)
+	private static final int motorHigh = 250;			// Speed of the faster rotating wheel (deg/seec)
 	
 // Static Resources:
 //
@@ -28,7 +32,7 @@ public class Lab1 {
 // Right motor connected to output B
 	
 	private static final Port usPort = LocalEV3.get().getPort("S1");
-	private static final EV3LargeRegulatedMotor leftMotor = new EV3LargeRegulatedMotor(LocalEV3.get().getPort("A"));
+	private static final EV3LargeRegulatedMotor leftMotor = new EV3LargeRegulatedMotor(LocalEV3.get().getPort("C"));
 	private static final EV3LargeRegulatedMotor rightMotor = new EV3LargeRegulatedMotor(LocalEV3.get().getPort("D"));
 	
 // Main entry point - instantiate objects used and set up sensor
